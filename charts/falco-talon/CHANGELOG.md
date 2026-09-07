@@ -3,6 +3,10 @@
 This file documents all notable changes to Falco Talon Helm Chart. The release
 numbering uses [semantic versioning](http://semver.org).
 
+## 0.5.0 - 2026-09-07
+
+- mount the rules ConfigMap as a directory (`/etc/falco-talon/rules.d`) instead of a `subPath` file, so ConfigMap updates are propagated by kubelet and picked up by the rules watcher (`watch_rules`) — see falcosecurity/falco-talon#799
+
 ## 0.4.1 - 2026-06-15
 
 - fix missing namespace in the Secret metadata

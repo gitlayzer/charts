@@ -45,7 +45,7 @@ spec:
           image: "{{ .Values.image.repository }}:{{ default .Chart.AppVersion .Values.image.tag }}"
           {{- end }}
           imagePullPolicy: {{ .Values.image.pullPolicy }}
-          args: ["server", "-c", "/etc/falco-talon/config.yaml", "-r", "/etc/falco-talon/rules.yaml"]
+          args: ["server", "-c", "/etc/falco-talon/config.yaml", "-r", "/etc/falco-talon/rules.d/rules.yaml"]
           ports:
             - name: http
               containerPort: 2803
@@ -77,8 +77,7 @@ spec:
               subPath: config.yaml
               readOnly: true
             - name: "rules"
-              mountPath: "/etc/falco-talon/rules.yaml"
-              subPath: rules.yaml
+              mountPath: "/etc/falco-talon/rules.d"
               readOnly: true
       {{- with .Values.nodeSelector }}
       nodeSelector:
